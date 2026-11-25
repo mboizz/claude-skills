@@ -48,3 +48,9 @@ drag test, rem magnet, rem sentrifugal, sealed / anti air asin.
 - `reel spinning <ukuran> murah` / `reel bc pemula`
 - `combo joran reel <jenis> <budget>`
 - `<merk> vs <merk> reel`
+
+## Sumber per platform (temuan pencarian Nov 2026)
+- **YouTube**: Jovi Riadi Rachman (review alat pancing, banyak membahas Relix Nusantara), Adun Mancing (kolaborator Relix, galatama).
+- **Facebook**: halaman resmi Relix Nusantara, Sagara Pancing, Adun Mancing; grup "Pengguna Relix Nusantara"; grup jual-beli alat pancing (cari kata `second`, `bekas`, `nego`).
+- **Shopee**: query `site:shopee.co.id <merk> <seri> <varian>`; cuplikan memuat harga/rentang harga. Halaman Shopee diblokir verifikasi bila di-scrape.
+- **Pembanding**: `tokopedia.com/find/<kata-kunci>` bisa di-scrape untuk daftar harga.

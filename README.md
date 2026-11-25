@@ -4,7 +4,7 @@ Kumpulan skill Claude milik Heru Supriyanto.
 
 | Skill | Fungsi |
 |---|---|
-| [cari-joran-reel-tiktok](cari-joran-reel-tiktok/) | Riset joran & reel pancing dari konten TikTok publik: merk, type, spesifikasi, harga, video teratas, saran combo, kreator mancing. |
+| [cari-joran-reel-tiktok](cari-joran-reel-tiktok/) | Riset joran & reel pancing dari TikTok, YouTube, Facebook, dan Shopee: merk, type, spesifikasi, harga baru/bekas, konten teratas, saran combo. |
 
 ## Pemasangan
 
