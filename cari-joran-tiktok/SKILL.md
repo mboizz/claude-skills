@@ -59,21 +59,35 @@ Untuk perbandingan beberapa merk, cari **tiap merk secara terpisah**.
 - Skor sederhana per video: engagement = (likes + komentar + share) / views. Tampilkan bila views ada.
 - Waspadai merk tiruan/KW: sebut bila komentar atau kreator menyinggungnya.
 
-## 4. Format jawaban
+## 4. Lengkapi spesifikasi & harga
+
+Caption TikTok jarang memuat spesifikasi lengkap. Untuk tiap joran yang muncul:
+1. Ambil dulu apa yang disebut di caption/video/komentar.
+2. Lengkapi kolom yang kosong dari **sumber resmi** (situs/katalog merk, label di blank joran)
+   lewat WebSearch/Firecrawl: `<merk> <seri> spesifikasi`, `<merk> <seri> line weight lure weight`.
+3. Harga: catat **harga disebut kreator** (dari video) dan, bila perlu, **kisaran harga marketplace**
+   (Tokopedia/Shopee/toko resmi) dari pencarian web, dengan tanggal pengecekan.
+4. Satu seri sering punya beberapa varian (panjang/power). Tulis satu baris per varian yang dibahas.
+5. Tandai asal tiap angka: (V) dari video, (R) dari sumber resmi, (M) dari marketplace.
+   Kolom yang tidak ditemukan diisi "—".
+
+## 5. Format jawaban
 
 1. **Ringkasan 2–4 kalimat**: merk/seri mana yang paling banyak dibahas & sentimennya.
-2. **Tabel video teratas** (maks 10):
+2. **Tabel produk joran** (WAJIB, satu baris per seri/varian):
+   `| # | Merk | Seri/Type | Jenis | Panjang | Power/Action | Line (lb/PE) | Lure/Casting wt | Bahan | Ruas/Ring | Harga disebut | Kisaran harga pasar | Video acuan |`
+   Jenis = spinning/casting/UL/jigging/surf/tegek. Urutkan sesuai permintaan user (harga, popularitas, atau kecocokan).
+3. **Tabel video teratas** (maks 10):
    `| # | Merk/Seri | Kreator | Views | Likes | Tgl | Jenis konten | Poin utama | Link |`
-3. **Perbandingan merk** (bila >1 merk): spesifikasi yang disebut, kisaran harga disebut,
-   kelebihan/kekurangan menurut kreator & komentar.
-4. **Kreator rekomendasi** untuk diikuti (bila relevan).
-5. **Catatan**: sumber data (jalur A/B/C), tanggal pencarian, keterbatasan.
+4. **Kelebihan/kekurangan per seri** menurut kreator & komentar (bila ada), plus cocok untuk teknik/lokasi apa.
+5. **Kreator rekomendasi** untuk diikuti (bila relevan).
+6. **Catatan**: sumber data (jalur A/B/C), tanggal pencarian, keterbatasan. Harga berubah — selalu cek ulang sebelum beli.
 
 Bila user minta dashboard/pantauan berkala, buat HTML single-file (IBM Plex Sans/Mono,
 Chart.js di-inline, tema terang cream #EDE2C8 / spruce #18412D / aksen tomato #EE4129)
-berisi tabel sortir dan grafik views per merk.
+berisi tabel produk (filter jenis, sortir harga), tabel video, dan grafik views per merk.
 
-## 5. Aturan
+## 6. Aturan
 
 - Hanya data publik. Jangan login ke akun TikTok user, jangan mengunduh video.
 - Jangan mengarang angka, harga, atau spesifikasi. Kosong lebih baik daripada salah.
