@@ -4,8 +4,8 @@
 Butuh env SCRAPECREATORS_API_KEY. Hanya pustaka standar Python.
 
 Contoh:
-  python3 tiktok_search.py keyword "review joran daido" --region ID --limit 20
-  python3 tiktok_search.py hashtag joranpancing --limit 30 --csv hasil.csv
+  python3 tiktok_search.py keyword "review reel shimano sedona" --region ID --limit 20
+  python3 tiktok_search.py hashtag reelpancing --limit 30 --csv hasil.csv
   python3 tiktok_search.py users "review joran"
   python3 tiktok_search.py profile namakreator
 """
