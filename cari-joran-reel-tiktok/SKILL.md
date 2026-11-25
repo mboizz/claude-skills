@@ -33,13 +33,14 @@ Tangkap dari pesan user (jangan tanya ulang kalau sudah jelas):
 Kirim pencarian antar-platform **sekaligus dalam satu giliran** (paralel). Untuk perbandingan, cari tiap merk/seri secara terpisah, dan joran serta reel dengan query terpisah.
 
 Alat yang dipakai, urut dari yang terbaik:
-1. **ScrapeCreators API** (khusus TikTok): hanya kalau ada env `SCRAPECREATORS_API_KEY`.
+1. **ScrapeCreators API** (khusus TikTok): hanya kalau ada env `SCRAPECREATORS_API_KEY` dan shell bisa mengakses `api.scrapecreators.com`.
 2. **Firecrawl** (`firecrawl_search` / `firecrawl_scrape`): kalau connector terhubung.
-3. **WebSearch**: selalu tersedia.
+3. **WebSearch**: selalu tersedia. Pakai pola query yang sama dengan Firecrawl. Angka views/likes dari jalur ini sering tidak ada; tulis "—", jangan menebak.
 
 ### TikTok
-- **ScrapeCreators**: `GET https://api.scrapecreators.com/v1/tiktok/search/keyword?query=...&region=ID` (header `x-api-key`), atau `/search/hashtag?hashtag=...`, `/search/users?query=...`, `/profile?handle=...`. Script ada di repo github.com/mboizz/claude-skills (`cari-joran-reel-tiktok/scripts/tiktok_search.py`).
-- **Firecrawl search**: `site:tiktok.com <joran|reel> <merk> <seri>`, plus variasi kata (`review`, `one piece`, `PE 1-3`, `#joran<seri>`). Satu query biasanya memberi 10–25 hasil berisi judul dan cuplikan.
+- **ScrapeCreators**: `GET https://api.scrapecreators.com/v1/tiktok/search/keyword?query=...&region=ID` (header `x-api-key`), atau `/v1/tiktok/search/hashtag?hashtag=...`, `/v1/tiktok/search/users?query=...`, `/v1/tiktok/profile?handle=...`. Script siap pakai: `scripts/tiktok_search.py`. Satu query per merk/seri, jangan berulang (memakai kredit).
+- **Firecrawl search**: `site:tiktok.com <joran|reel> <merk> <seri>`, plus variasi kata (`review`, `one piece`, `PE 1-3`, `drag test`, `#joran<seri>`). Satu query biasanya memberi 10–25 hasil berisi judul dan cuplikan.
+- Query umum lain: `tiktok reel spinning <ukuran> murah <budget>`, `tiktok combo joran reel <jenis> <budget>`.
 - **Views/likes per video**: `firecrawl_scrape` URL video dengan `formats: ["query"]`. Biayanya **±34 kredit per video** (lewat provider influencers-club), jadi jangan scrape semua. Ambil untuk 3–5 video teratas saja, atau tanyakan dulu ke user kalau ingin lebih banyak. Halaman foto (`/photo/`) tidak bisa di-scrape.
 - Hashtag: #joranpancing #reviewjoran #reelpancing #reviewreel #reelspinning #reelbc #combopancing #mancingmania #ultralight #jigging #mancinglaut #fishingindonesia.
 
@@ -61,7 +62,7 @@ Alat yang dipakai, urut dari yang terbaik:
 
 ## 3. Saring dan nilai
 
-- Simpan hanya konten yang relevan dengan kategori yang diminta. Buang konten senar/umpan/kail saja kecuali diminta.
+- Simpan hanya konten yang relevan dengan kategori yang diminta (joran, reel, atau combo). Buang konten senar/umpan/kail saja kecuali diminta.
 - Tandai jenis sumber: **resmi** (merk/kolaborator), **review independen**, **toko/afiliasi** (keranjang kuning, "link di bio", "cek di toko"), **komunitas**, **jual bekas**.
 - Catat klaim spesifikasi dan harga. Harga dari video = "harga disebut kreator per <tanggal>", bukan harga pasti.
 - **Cocokkan angka antar-platform.** Kalau ada yang bertentangan (panjang, berat, line rating, jig weight), tampilkan keduanya, beri tanda ⚠️, dan sebutkan sumber mana yang paling kuat (urutannya: resmi/label > review YouTube > toko > TikTok).
@@ -73,9 +74,9 @@ Alat yang dipakai, urut dari yang terbaik:
 ## 4. Lengkapi spesifikasi & harga
 
 Untuk tiap produk yang muncul:
-1. Ambil apa yang disebut di video, caption, postingan, dan judul listing.
-2. Lengkapi kolom kosong dari **review YouTube** dan **sumber resmi** (situs/katalog merk, label pada produk).
-3. Harga: **harga baru Shopee** (rentang), pembanding Tokopedia/Blibli/Lazada bila perlu, dan **harga bekas Facebook** bila ada. Selalu cantumkan tanggal pengecekan.
+1. Ambil apa yang disebut di video, caption, komentar, postingan, dan judul listing.
+2. Lengkapi kolom kosong dari **review YouTube** dan **sumber resmi** (situs/katalog merk, label pada produk): `<merk> <seri> spesifikasi`, `<merk> <seri> specs gear ratio max drag`.
+3. Harga: **harga disebut kreator**, **harga baru Shopee** (rentang), pembanding Tokopedia/Blibli/Lazada bila perlu, dan **harga bekas Facebook** bila ada. Selalu cantumkan tanggal pengecekan.
 4. Satu seri sering punya beberapa varian (joran: panjang/power/PE, SP/OH; reel: ukuran 1000/2500/4000, gear ratio HG/XG, handle kiri/kanan). Tulis satu baris per varian.
 5. Tandai asal tiap angka: **(T)** TikTok, **(Y)** YouTube, **(F)** Facebook, **(S)** Shopee, **(M)** marketplace lain, **(R)** sumber resmi. Kolom yang tidak ditemukan diisi "—".
 
@@ -85,15 +86,16 @@ Untuk tiap produk yang muncul:
 2. **Tabel produk joran** (bila joran diminta; satu baris per seri/varian):
    `| # | Merk | Seri/Type | Jenis | Panjang | Power/Action | Line (lb/PE) | Lure/Jig wt | Berat | Bahan | Ruas/Ring/Reel seat | Harga baru (Shopee) | Harga bekas | Sumber |`
 3. **Tabel produk reel** (bila reel diminta; satu baris per seri/ukuran):
-   `| # | Merk | Seri/Type | Jenis | Ukuran | Gear ratio | Max drag (kg) | Bearing | Kapasitas senar | Tarikan/putaran (cm) | Berat (g) | Bahan body/spool | Harga baru (Shopee) | Harga bekas | Sumber |`
+   `| # | Merk | Seri/Type | Jenis | Ukuran | Gear ratio | Max drag (kg) | Bearing | Kapasitas senar (PE/mono) | Tarikan per putaran (cm) | Berat (g) | Bahan body/spool | Harga baru (Shopee) | Harga bekas | Sumber |`
    Untuk BC tambahkan di kolom Jenis: sistem rem (magnet/sentrifugal/DC) dan handle kiri/kanan.
 4. **Listing Shopee** (maks 10, urut harga termurah): `| # | Judul/varian | Harga | Toko | Link |`. Beri ⚠️ untuk harga mencurigakan.
-5. **Saran combo** (bila diminta, atau joran dan reel dicari bersamaan): pasangan joran–reel yang cocok berdasarkan jenis (spinning↔spinning, BC↔casting), ukuran reel vs line rating joran, dan total kisaran harga.
+5. **Saran combo** (bila user minta combo, atau joran dan reel dicari bersamaan): pasangan joran–reel yang cocok berdasarkan jenis (spinning↔spinning, BC↔casting), ukuran reel vs line rating joran, dan total kisaran harga. Jelaskan alasannya singkat.
 6. **Konten teratas per platform**, digabung dalam satu tabel (maks 10 TikTok + 5 YouTube + 5 Facebook, kecuali user minta jumlah lain):
    `| # | Platform | Kreator/Channel/Grup | Seri | Jenis sumber | Views | Likes | Tgl | Poin utama | Link |`
-7. **Kelebihan/kekurangan per seri**: utamakan yang disebut review independen, lalu komentar dan komunitas.
+7. **Kelebihan/kekurangan per seri**: utamakan yang disebut review independen, lalu komentar dan komunitas. Sebutkan juga cocok untuk teknik/lokasi apa.
 8. **Angka yang bertentangan** (⚠️) dan sumber mana yang paling bisa dipercaya.
-9. **Catatan**: alat yang dipakai, tanggal pencarian, keterbatasan (Facebook dan Shopee hanya dari cuplikan, views TikTok hanya untuk video yang di-scrape). Harga berubah, jadi cek ulang sebelum beli.
+9. **Kreator/channel rekomendasi** untuk diikuti (bila relevan).
+10. **Catatan**: alat yang dipakai, tanggal pencarian, keterbatasan (Facebook dan Shopee hanya dari cuplikan, views TikTok hanya untuk video yang di-scrape). Harga berubah, jadi cek ulang sebelum beli.
 
 Bila user minta dashboard/pantauan berkala, buat HTML single-file (IBM Plex Sans/Mono, Chart.js di-inline, tema terang cream #EDE2C8 / spruce #18412D / aksen tomato #EE4129) dengan tab Joran / Reel / Combo / Harga: tabel produk (filter jenis, sortir harga), tabel listing Shopee, tabel konten per platform, dan grafik views per merk.
 
